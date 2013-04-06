@@ -10,6 +10,7 @@ class Genfig {
 		int getInt(std::string key);
 		double getFloat(std::string key);
 		bool getBool(std::string key);
+		bool hasKey(std::string key);
 
 	private:
 		void init(std::string filename, char delim);
