@@ -78,3 +78,14 @@ bool Genfig::getBool(std::string key) {
 bool Genfig::hasKey(std::string key) {
 	return this->config.count(key) == 1;
 }
+
+void Genfig::writeToFile(std::string filename) {
+
+	std::ofstream output(filename.c_str());
+	for (std::map<std::string, std::string>::iterator i = this->config.begin(); i != this->config.end(); ++i) {
+		
+		output << i->first << ": " << i->second << std::endl;
+	}
+	output.close();
+
+}

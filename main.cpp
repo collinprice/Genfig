@@ -10,6 +10,8 @@ int main() {
 	if (test.hasKey("age")) {
 		std::cout << "age: " << test.getInt("age") << std::endl;
 	}
+
+	test.writeToFile("output.cfg");
 	
 
 	return 0;

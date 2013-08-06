@@ -11,6 +11,7 @@ class Genfig {
 		double getFloat(std::string key);
 		bool getBool(std::string key);
 		bool hasKey(std::string key);
+		void writeToFile(std::string filename);
 
 	private:
 		std::map<std::string, std::string> config;
