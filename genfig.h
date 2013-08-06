@@ -13,7 +13,9 @@ class Genfig {
 		bool hasKey(std::string key);
 
 	private:
-		void init(std::string filename, char delim);
-
 		std::map<std::string, std::string> config;
+		char delimeter;
+
+		void init(std::string filename, char delim);
+		
 };

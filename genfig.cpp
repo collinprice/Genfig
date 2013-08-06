@@ -33,8 +33,10 @@ static inline std::string &trim(std::string &s) {
 }
 
 void Genfig::init(std::string filename, char delim) {
-	std::ifstream ifile(filename.c_str());
 
+	this->delimeter = delim;
+
+	std::ifstream ifile(filename.c_str());
 	if (ifile.good()) {
 		std::string line;
 		while(std::getline(ifile, line)) {
@@ -54,7 +56,6 @@ void Genfig::init(std::string filename, char delim) {
 			}
 		}
 	}
-
 	ifile.close();
 }
 
