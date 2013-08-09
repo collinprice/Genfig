@@ -67,7 +67,7 @@ int Genfig::getInt(std::string key) {
 	return atoi(this->config[key].c_str());
 }
 
-double Genfig::getFloat(std::string key) {
+double Genfig::getDouble(std::string key) {
 	return atof(this->config[key].c_str());
 }
 

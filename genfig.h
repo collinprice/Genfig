@@ -8,8 +8,9 @@ class Genfig {
 		Genfig(std::string filename, char delim);
 		std::string getString(std::string key);
 		int getInt(std::string key);
-		double getFloat(std::string key);
+		double getDouble(std::string key);
 		bool getBool(std::string key);
+
 		bool hasKey(std::string key);
 		void writeToFile(std::string filename);
 
