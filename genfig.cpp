@@ -35,6 +35,7 @@ static inline std::string &trim(std::string &s) {
 void Genfig::init(std::string filename, char delim) {
 
 	this->delimeter = delim;
+	this->list_delim = ',';
 
 	std::ifstream ifile(filename.c_str());
 	if (ifile.good()) {
@@ -75,6 +76,32 @@ bool Genfig::getBool(std::string key) {
 	return this->config[key].compare("true");
 }
 
+std::vector<std::string> Genfig::getStringList(std::string key) {
+
+	std::vector<std::string> stringList;
+	std::stringstream ss(this->getString(key));
+	for (std::string token; std::getline(ss, token, this->list_delim); ) {
+		trim(token);
+		if (token.length() > 0) {
+			stringList.push_back(token);
+		}
+	}
+
+	return stringList;
+}
+
+std::vector<int>  Genfig::getIntList(std::string key) {
+	return this->convertStringListToInts(this->getStringList(key));
+}
+
+std::vector<double> Genfig::getDoubleList(std::string key) {
+	return this->convertStringListToDoubles(this->getStringList(key));
+}
+
+std::vector<bool> Genfig::getBoolList(std::string key) {
+	return this->convertStringListToBooleans(this->getStringList(key));
+}
+
 bool Genfig::hasKey(std::string key) {
 	return this->config.count(key) == 1;
 }
@@ -88,4 +115,29 @@ void Genfig::writeToFile(std::string filename) {
 	}
 	output.close();
 
+}
+
+std::vector<int>  Genfig::convertStringListToInts(std::vector<std::string> strings) {
+
+	std::vector<int> ints;
+	for (std::vector<std::string>::iterator string = strings.begin(); string != strings.end(); ++string) {
+		ints.push_back(atoi((*string).c_str()));
+	}
+	return ints;
+}
+std::vector<double>  Genfig::convertStringListToDoubles(std::vector<std::string> strings) {
+
+	std::vector<double> doubles;
+	for (std::vector<std::string>::iterator string = strings.begin(); string != strings.end(); ++string) {
+		doubles.push_back(atof((*string).c_str()));
+	}
+	return doubles;
+}
+std::vector<bool>  Genfig::convertStringListToBooleans(std::vector<std::string> strings) {
+
+	std::vector<bool> bools;
+	for (std::vector<std::string>::iterator string = strings.begin(); string != strings.end(); ++string) {
+		bools.push_back( !(*string).compare("true") );
+	}
+	return bools;
 }
