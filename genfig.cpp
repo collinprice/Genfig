@@ -73,7 +73,7 @@ double Genfig::getDouble(std::string key) {
 }
 
 bool Genfig::getBool(std::string key) {
-	return this->config[key].compare("true");
+	return this->config[key].compare("true") == 0;
 }
 
 std::vector<std::string> Genfig::getStringList(std::string key) {
